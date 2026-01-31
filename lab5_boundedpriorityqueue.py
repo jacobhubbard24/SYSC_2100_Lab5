@@ -3,8 +3,8 @@
 from collections import deque
 import ctypes
 
-__author__ = ''
-__student_number__ = ''
+__author__ = 'Jacob Hubbard'
+__student_number__ = '101348462'
 
 
 class BoundedPriorityQueue:
@@ -83,7 +83,12 @@ class BoundedPriorityQueue:
         >>> pq.add("blue", 6)
         builtins.ValueError: add(item, priority): 6 is an invalid priority level
         """
-        raise NotImplementedError("add hasn't been implemented.")
+
+        if (priority < 0 or priority >= len(self._queues)):
+            raise ValueError("invalid priority level")
+            return
+        self._queues[priority].append(item)
+        self._num_items += 1
 
     # Exercise 4
 
@@ -113,7 +118,15 @@ class BoundedPriorityQueue:
         >>> pq.remove()
         builtins.IndexError: remove from an empty BoundedPriorityQueue
         """
-        raise NotImplementedError("remove hasn't been implemented.")
+
+        # loop through self._queues until there are elements in the deque. Then do deq.popleft() to remove and return the first element
+        if (len(self) == 0):
+            raise IndexError("remove from an empty BoundedPriorityQueue")
+            return
+        for deq in self._queues:
+            if (len(deq) != 0):
+                self._num_items -= 1
+                return deq.popleft()
 
 
 def _new_array(capacity: int) -> 'py_object_Array_<capacity>':

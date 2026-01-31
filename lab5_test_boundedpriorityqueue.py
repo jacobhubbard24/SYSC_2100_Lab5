@@ -10,6 +10,7 @@ NUM_LEVELS = 10
 
 
 def build_priority_queue() -> BoundedPriorityQueue:
+    
     """Return a priority queue with NUM_LEVELS levels, containing 6 items
     added in order listed here: ("purple", 5), ("black", 0), ("orange", 3),
     ("white", 0), ("green", 1), ("yellow", 5)
